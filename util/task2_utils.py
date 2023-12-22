@@ -3,8 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import r2_score, mean_squared_error
 
 def clean_data(df, test_size):
     '''
@@ -22,15 +20,21 @@ def clean_data(df, test_size):
     are split into train and test datasets respectively.
     '''
 
+    # rows where JobSatisfaction is not given are dropped, then df is split into X and Y (features and targets)
     df = df.dropna(subset=['JobSatisfaction'], axis=0).reset_index().drop('index', axis=1)
     y = df['JobSatisfaction']
     x = df[['FriendsDevelopers', 'HomeRemote', 'ProgramHobby', 'FormalEducation', 'OtherPeoplesCode', 'HighestEducationParents', 'KinshipDevelopers']]
 
+    # dummy variables are created of each categorical feature
     cat_vars = x.select_dtypes(include=['object']).copy().columns
     for var in  cat_vars:
         # for each cat add dummy var, drop original column
         x = pd.concat([x.drop(var, axis=1), pd.get_dummies(x[var], prefix=var, prefix_sep='_', drop_first=True)], axis=1)
+
+    # missing values are handled by the cutoff method, the cutoff is 2000 currently 
     reduce_X = x.iloc[:, np.where((x.sum() > 2000) == True)[0]]
+
+    # finally, the train-test split is done on X and Y
     X_train, X_test, y_train, y_test = train_test_split(reduce_X, y, test_size = test_size, random_state=42)
 
     return X_train, X_test, y_train, y_test
