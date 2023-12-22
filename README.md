@@ -1,9 +1,9 @@
 The article related to this repository can be found at: https://medium.com/@jockyeving/effects-of-social-preferences-on-workplace-happiness-in-the-it-field-90b1e713a14f
 
 The following notebooks are used to create visuals in answering the following questions:
-**Question I:** What programming languages are used most among responders, and what trends are to be expected?
-**Question II:** How does a responders social status, or habits influence his/her job satisfaction?
-**Question III:** How does the idea of being underpaid/overpaid affect an individual's immersion in his/her job?
+<br>**Question I:** What programming languages are used most among responders, and what trends are to be expected?
+<br>**Question II:** How does a responders social status, or habits influence his/her job satisfaction?
+<br>**Question III:** How does the idea of being underpaid/overpaid affect an individual's immersion in his/her job?
 
 #### File Description
 
